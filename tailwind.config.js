@@ -6,6 +6,11 @@ export default {
 			fontFamily: {
 				open: 'Open Sans Variable, sans-serif',
 			},
+			colors: {
+				first: '#FFFFFF',
+				second: '#292929',
+				third: '#F1F1F1',
+			},
 		},
 	},
 	plugins: [],
