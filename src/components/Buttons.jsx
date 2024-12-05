@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
 
-export function Button({ variant, children, ...props }) {
+export function Button({ active, variant, children, ...props }) {
 	return (
-		<button className={`  text-second  p-2 text-xl ${variant || ''}`} {...props}>
+		<button
+			className={`flex flex-col items-center justify-center   p-2 w-24 h-24 text-xl flex-shrink-0  border-2  border-second rounded-3xl ${
+				active ? 'bg-second text-first border-solid' : 'bg-first text-second border-dotted'
+			} ${variant || ''}`}
+			{...props}>
 			{children}
 		</button>
 	)
 }
-export function SecondButton({ children, ...props }) {
+export function SecondButton({ variant, children, ...props }) {
 	return (
-		<button className="bg-second py-2 px-12 text-xl text-first rounded-full " {...props}>
+		<button className={`bg-second py-2 px-8 text-xl text-first rounded-full ${variant || ''}`} {...props}>
 			{children}
 		</button>
 	)
@@ -30,6 +34,6 @@ export const DateButton = forwardRef(function DateButton(props, ref) {
 	)
 })
 
-Button.propTypes = { variant: PropTypes.string, children: PropTypes.node }
-SecondButton.propTypes = { children: PropTypes.node }
+Button.propTypes = { active: PropTypes.bool, variant: PropTypes.string, children: PropTypes.node }
+SecondButton.propTypes = { variant: PropTypes.string, children: PropTypes.node }
 DateButton.propTypes = { active: PropTypes.bool, children: PropTypes.node }

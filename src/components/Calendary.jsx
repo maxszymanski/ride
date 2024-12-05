@@ -3,10 +3,20 @@ import { generateDaysForMonth } from '../lib/helpers'
 import { DateButton, SecondButton } from './Buttons'
 import useDateStore from '../store'
 import { allMonths } from '../lib/dates'
-
+import MonthsModal from './MonthsModal'
+import YearsModal from './YearsModal'
 
 function Calendary() {
-	const { year, month, active, setActive } = useDateStore()
+	const {
+		year,
+		month,
+		active,
+		setActive,
+		isMonthsModalOpen,
+		setIsMonthsModalOpen,
+		isYearsModalOpen,
+		setIsYearsModalOpen,
+	} = useDateStore()
 	const containerRef = useRef(null)
 	const buttonRefs = useRef({})
 
@@ -26,20 +36,39 @@ function Calendary() {
 		setActive(e.currentTarget.value)
 	}
 
+	const handleOpenMonthsModal = () => {
+		setIsMonthsModalOpen()
+		if (isYearsModalOpen) setIsYearsModalOpen()
+	}
+	const handleOpenYearsModal = () => {
+		setIsYearsModalOpen()
+		if (isMonthsModalOpen) setIsMonthsModalOpen()
+	}
+
 	useEffect(() => {
 		if (buttonRefs.current[active]) {
 			buttonRefs.current[active]?.scrollIntoView({
 				behavior: 'smooth',
 				inline: 'center',
+				block: 'nearest',
 			})
 		}
 	}, [active])
 
 	return (
 		<div>
-			<SecondButton>{allMonths[month]}</SecondButton>
+			<div className="relative py-2 px-4 flex items-center justify-between">
+				<SecondButton onClick={handleOpenMonthsModal} variant="min-w-48">
+					{allMonths[month]}
+				</SecondButton>
+				<SecondButton onClick={handleOpenYearsModal} variant="">
+					{year}
+				</SecondButton>
+				{isMonthsModalOpen && <MonthsModal />}
+				{isYearsModalOpen && <YearsModal />}
+			</div>
 
-			<div ref={containerRef} className="flex items-center gap-6 w-full overflow-x-auto p-4 my-4">
+			<div ref={containerRef} className="flex items-center gap-6 w-full overflow-x-auto p-4 my-4 ">
 				{' '}
 				{days.map(d => {
 					return (
