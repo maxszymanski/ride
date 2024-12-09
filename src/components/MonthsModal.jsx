@@ -6,7 +6,6 @@ export default function MonthsModal() {
 	const setIsMonthsModalOpen = useDateStore(state => state.setIsMonthsModalOpen)
 
 	const handleSetMonth = e => {
-		// setMonth(e.currentTatget.value)
 		setNewMonth(e.currentTarget.value)
 		setIsMonthsModalOpen()
 	}

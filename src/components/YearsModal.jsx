@@ -6,7 +6,6 @@ function YearsModal() {
 	const setIsYearsModalOpen = useDateStore(state => state.setIsYearsModalOpen)
 
 	const handleSetYear = e => {
-		// setYear(e.currentTatget.value)
 		setNewYear(e.currentTarget.value)
 		setIsYearsModalOpen()
 	}

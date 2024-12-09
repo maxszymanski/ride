@@ -19,7 +19,6 @@ const useDateStore = create(set => ({
 	setIsSaveModalOpen: () => set(state => ({ isSaveModalOpen: !state.isSaveModalOpen })),
 	setWhereGo: goTo => set({ whereGo: goTo }),
 	setWithWho: goWith => set({ withWho: goWith }),
-	setPrice: pr => set({ price: pr }),
 }))
 
 export default useDateStore

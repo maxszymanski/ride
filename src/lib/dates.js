@@ -13,4 +13,4 @@ export const allMonths = [
 	'Grudzień',
 ]
 
-export const allYears = Array.from({ length: 2024 - 2000 + 1 }, (_, i) => 2000 + i).reverse()
+export const allYears = Array.from({ length: 2044 - 2024 + 1 }, (_, i) => 2024 + i)

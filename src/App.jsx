@@ -1,30 +1,24 @@
-import Calendary from './components/Calendary'
-import Header from './components/Header'
-import SaveButton from './components/SaveButton'
-import SaveModal from './components/SaveModal'
-import Where from './components/Where'
-import WithWho from './components/WithWho'
-import useDateStore from './store'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import HomePage from './pages/HomePage'
+import Layout from './components/Layout'
+import History from './pages/History'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
-	const isSaveModalOpen = useDateStore(state => state.isSaveModalOpen)
-
 	return (
-		<div className={`font-open min-h-screen flex flex-col bg-first text-second relative `}>
-			<Header />
-			<main className="  py-8  flex-col h-full flex-1 ">
-				<Calendary />
-				<Where />
-				<WithWho />
-				<SaveButton />
-
-				{/* <div className="flex items-center justify-between">
-					<h2 className="text-center ">Wybierz datę </h2>
-					<StyledDatePicker />
-				</div> */}
-			</main>
-			{isSaveModalOpen && <SaveModal />}
-		</div>
+		<QueryClientProvider client={queryClient}>
+			<BrowserRouter>
+				<Routes>
+					<Route element={<Layout />}>
+						<Route index element={<HomePage />} />
+						<Route path="history" element={<History />} />
+						<Route path="stats" element={<div>statystyki</div>} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	)
 }
 
