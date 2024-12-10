@@ -5,8 +5,10 @@ import useDateStore from '../store'
 import { allMonths } from '../lib/dates'
 import MonthsModal from './MonthsModal'
 import YearsModal from './YearsModal'
+import { useNavigate } from 'react-router'
 
 function Calendary() {
+	const navigate = useNavigate()
 	const {
 		year,
 		month,
@@ -33,7 +35,9 @@ function Calendary() {
 	}
 
 	const handleSetDate = e => {
-		setActive(e.currentTarget.value)
+		const value = e.currentTarget.value
+		setActive(value)
+		navigate(`/${value}`)
 	}
 
 	const handleOpenMonthsModal = () => {
@@ -73,6 +77,7 @@ function Calendary() {
 				{days.map(d => {
 					return (
 						<DateButton
+							to={`/${d.date}`}
 							key={d.date}
 							active={active === d.date}
 							value={d.date}

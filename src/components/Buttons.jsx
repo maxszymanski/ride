@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 export function Button({ active, variant, children, ...props }) {
 	return (
 		<button
-			className={`flex flex-col items-center justify-center   p-2 w-24 h-24 text-xl flex-shrink-0  border-2  border-second rounded-3xl ${
+			className={`flex flex-col items-center justify-center   p-2 w-24 h-24 text-xl flex-shrink-0  border-2  border-second rounded-3xl disabled:cursor-not-allowed ${
 				active ? 'bg-second text-first border-solid' : 'bg-first text-second border-dotted'
 			} ${variant || ''}`}
 			{...props}>
