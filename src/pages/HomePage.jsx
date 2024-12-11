@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router'
+import { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router'
 import Calendary from '../components/Calendary'
 import DayOff from '../components/DayOff'
 import Information from '../components/Information'
@@ -8,7 +9,13 @@ import WithWho from '../components/WithWho'
 import useDateStore from '../store'
 
 function HomePage() {
-	const whereGo = useDateStore(state => state.whereGo)
+	const active = useDateStore(state => state.active)
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		navigate(active)
+	}, [active, navigate])
+
 	return (
 		<>
 			<Calendary />
