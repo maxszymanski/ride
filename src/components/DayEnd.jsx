@@ -36,7 +36,7 @@ function DayEnd({ ride }) {
 								Podróż: <span className="font-bold">{withWhoGo}</span>
 							</p>
 							<p>
-								Cena: <span className="font-bold">{price}</span>
+								Cena: <span className="font-bold">{who === 'mix' ? '4zł + 5zł' : `${price}zł`}</span>
 							</p>
 						</div>
 					)

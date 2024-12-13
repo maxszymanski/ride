@@ -16,3 +16,12 @@ export async function getRideForDay(date) {
 	if (error) throw new Error('Błąd pobierania danych')
 	return data
 }
+export async function getHistoryRideByDate(date) {
+	const { data, error } = await supabase
+		.from('ride')
+		.select('*')
+		.like('date', date)
+		.order('date', { ascending: true })
+	if (error) throw new Error('Błąd pobierania danych')
+	return data
+}

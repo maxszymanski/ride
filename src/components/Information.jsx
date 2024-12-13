@@ -2,6 +2,7 @@ import { useGetRideForDay } from '../hooks/useGetRideForDay'
 import useDateStore from '../store'
 import DayEnd from './DayEnd'
 import DayOff from './DayOff'
+import Loading from './Loading'
 import SaveButton from './SaveButton'
 import Where from './Where'
 import WithWho from './WithWho'
@@ -23,12 +24,7 @@ function Information() {
 
 	const dayEnd = (rideHome && rideWork) || dayOff
 
-	if (isRideLoading)
-		return (
-			<div className="text-center flex flex-col items-center h-full text-xl mt-12">
-				<p> Ładowanie przejazdu...</p>
-			</div>
-		)
+	if (isRideLoading) return <Loading />
 
 	if (dayEnd) return <DayEnd ride={rideForDay} />
 

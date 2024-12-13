@@ -1,13 +1,19 @@
 import { allYears } from '../lib/dates'
 import useDateStore from '../store'
 
-function YearsModal() {
+function YearsModal({ variant = 'today' }) {
 	const setNewYear = useDateStore(state => state.setNewYear)
 	const setIsYearsModalOpen = useDateStore(state => state.setIsYearsModalOpen)
+	const setNewHistoryYear = useDateStore(state => state.setNewHistoryYear)
+	const setIsHistoryYearsModalOpen = useDateStore(state => state.setIsHistoryYearsModalOpen)
 
 	const handleSetYear = e => {
 		setNewYear(e.currentTarget.value)
 		setIsYearsModalOpen()
+	}
+	const handleSetHistoryYear = e => {
+		setNewHistoryYear(e.currentTarget.value)
+		setIsHistoryYearsModalOpen()
 	}
 
 	return (
@@ -16,7 +22,7 @@ function YearsModal() {
 				<button
 					className="text-lg px-20 py-3 bg-second  odd:bg-first w-full text-first odd:text-second"
 					value={year}
-					onClick={handleSetYear}
+					onClick={variant === 'today' ? handleSetYear : handleSetHistoryYear}
 					key={year}>
 					{year}
 				</button>
