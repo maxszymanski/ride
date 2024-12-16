@@ -6,6 +6,7 @@ import { allMonths } from '../lib/dates'
 import MonthsModal from './MonthsModal'
 import YearsModal from './YearsModal'
 import { useNavigate } from 'react-router'
+import { useGetHistoryRideByDate } from '../hooks/useGetHistoryRideByDate'
 
 function Calendary() {
 	const navigate = useNavigate()
@@ -19,8 +20,11 @@ function Calendary() {
 		isYearsModalOpen,
 		setIsYearsModalOpen,
 	} = useDateStore()
+	const { historyRide } = useGetHistoryRideByDate()
 	const containerRef = useRef(null)
 	const buttonRefs = useRef({})
+	const daysOff = historyRide.map(r => r.date)
+	console.log(daysOff)
 
 	const days = generateDaysForMonth(year, month)
 
@@ -75,12 +79,15 @@ function Calendary() {
 			<div ref={containerRef} className="flex items-center gap-6 w-full overflow-x-auto p-4 my-4 ">
 				{' '}
 				{days.map(d => {
+					const isEndDay = daysOff.includes(d.date)
+
 					return (
 						<DateButton
 							to={`/${d.date}`}
 							key={d.date}
 							active={active === d.date}
 							value={d.date}
+							isEnd={isEndDay}
 							onClick={handleSetDate}
 							ref={el => (buttonRefs.current[d.date] = el)}>
 							<span>{daysName[d.dateDay]}</span>

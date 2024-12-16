@@ -8,7 +8,6 @@ import Where from './Where'
 import WithWho from './WithWho'
 
 function Information() {
-	const active = useDateStore(state => state.active)
 	const whereGo = useDateStore(state => state.whereGo)
 
 	const { rideForDay, isRideLoading } = useGetRideForDay()

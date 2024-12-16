@@ -11,8 +11,10 @@ function History() {
 	const { historyRide, isHistoryLoading } = useGetHistoryRideByDate()
 
 	const homeRide = historyRide.filter(ride => ride.where === 'home')
-	const workRide = historyRide.filter(ride => ride.where === 'work')
-	console.log(homeRide)
+	const workRide = historyRide.filter(ride => ride.where === 'work').length || 0
+	const daysOff = historyRide.filter(ride => ride.where === 'day-off').length || 0
+
+	const workingDays = historyRide?.length - daysOff || 0
 
 	const {
 		historyYear,
@@ -46,30 +48,50 @@ function History() {
 				{isHistoryMonthsModalOpen && <MonthsModal variant="history" />}
 				{isHistoryYearsModalOpen && <YearsModal variant="history" />}
 			</div>
-			<div className="flex justify-between gap-2 mt-12 px-4 ">
-				<ul className="flex flex-col">
-					<li className="self-end mr-6 mb-6">Do pracy</li>
-					{homeRide.map(ride => {
-						return (
-							<li key={ride.id} className="flex gap-3">
-								<p>{ride.date}</p>
-								<p>{ride.who}</p>
-							</li>
-						)
-					})}
-				</ul>
-				<ul className="">
-					<li className="mb-6">Do Domu</li>
-					{workRide.map(ride => {
-						return (
-							<li key={ride.id} className="flex gap-3">
-								<p>{ride.date}</p>
-								<p>{ride.who}</p>
-							</li>
-						)
-					})}
-				</ul>
+			<div className="flex justify-between px-12 py-8">
+				<div className="text-center">
+					<p className="mb-3">Dni pracujące</p>
+					<p className="font-bold text-xl">{workRide}</p>
+				</div>
+
+				<div className="text-center">
+					<p className="mb-3">Dni wolne</p>
+					<p className="font-bold text-xl">{daysOff}</p>
+				</div>
 			</div>
+
+			<ul className="flex flex-col   divide-third divide-y-2 w-full  border-t-2 border-third">
+				{historyRide.map(ride => {
+					const { id, date, who, where } = ride
+					const whereGo =
+						where === 'work' ? 'Do pracy' : where === 'home' ? 'Do domu' : where === 'day-off' ? '-' : ''
+
+					const withWhoGo =
+						who === 'train'
+							? 'Pociąg'
+							: who === 'max'
+							? 'Maksiu'
+							: who === 'bus'
+							? 'Bus'
+							: who === 'mix'
+							? 'Bus + Maksiu'
+							: who === 'day-off'
+							? 'Wolne'
+							: ''
+
+					return (
+						<li
+							key={id}
+							className={`flex justify-between gap-3 text-base py-5 px-4 items-center  ${
+								where === 'work' ? 'bg-red-100' : where === 'home' ? 'bg-green-100' : 'bg-first'
+							}  `}>
+							<p className="w-1/3 text-center">{date}</p>
+							<p className="w-1/3 text-center">{whereGo}</p>
+							<p className="w-1/3 text-center">{withWhoGo}</p>
+						</li>
+					)
+				})}
+			</ul>
 		</main>
 	)
 }

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
+import { useGetRideForDay } from '../hooks/useGetRideForDay'
+import { MdDoneAll } from 'react-icons/md'
 
 export function Button({ disabled, active, variant, children, ...props }) {
 	return (
@@ -22,15 +24,24 @@ export function SecondButton({ variant, children, ...props }) {
 }
 
 export const DateButton = forwardRef(function DateButton(props, ref) {
-	const { active = false, children, ...otherProps } = props
+	const { active = false, isEnd, children, ...otherProps } = props
+
 	return (
 		<button
 			ref={ref}
-			className={`flex flex-col items-center justify-center   p-2 text-2xl flex-shrink-0  border-2  border-second rounded-3xl ${
+			className={`flex flex-col items-center justify-center   p-2 text-2xl flex-shrink-0  border-2  border-second rounded-3xl relative z-10 ${
 				active ? 'bg-second text-first border-solid' : 'bg-first text-second border-dotted'
-			}`}
+			} ${isEnd ? 'text-green-500' : ''} `}
 			{...otherProps}>
 			{children}
+			{isEnd && (
+				<span
+					className={`absolute -top-4 right-0 z-20 text-green-600 rounded-full ${
+						active ? 'bg-transparent' : 'bg-first'
+					}`}>
+					<MdDoneAll className="size-8" />
+				</span>
+			)}
 		</button>
 	)
 })

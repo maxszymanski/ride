@@ -17,7 +17,7 @@ export default function MonthsModal({ variant = 'today' }) {
 	}
 
 	return (
-		<div className="absolute flex flex-col  items-center border-second h-72 border rounded-2xl  overflow-x-hidden overflow-y-auto top-14 shadow-xl shadow-second">
+		<div className="absolute flex flex-col  items-center border-second h-72 border rounded-2xl  overflow-x-hidden overflow-y-auto top-14 shadow-xl shadow-second z-40">
 			{allMonths.map((month, index) => (
 				<button
 					className="text-lg px-20 py-3 bg-second  odd:bg-first w-full text-first odd:text-second"
