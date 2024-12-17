@@ -78,7 +78,7 @@ function Stats() {
 		<main>
 			<HistoryDates />
 			{isHistoryLoading && <Loading />}
-			{historyRide.length > 0 ? (
+			{historyRide.length > 0 && !isHistoryLoading ? (
 				<>
 					<div className="pt-7 px-4">
 						<h2 className="text-center text-2xl">Podsumowanie</h2>

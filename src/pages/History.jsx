@@ -18,7 +18,7 @@ function History() {
 	return (
 		<main>
 			<HistoryDates />
-			{historyRide.length > 0 ? (
+			{historyRide.length > 0 && !isHistoryLoading ? (
 				<>
 					<div className="flex justify-between px-12 py-8">
 						<div className="text-center">
