@@ -20,11 +20,13 @@ function Calendary() {
 		isYearsModalOpen,
 		setIsYearsModalOpen,
 	} = useDateStore()
-	const { historyRide } = useGetHistoryRideByDate()
+	const { historyRide } = useGetHistoryRideByDate(year, month)
 	const containerRef = useRef(null)
 	const buttonRefs = useRef({})
-	const daysOff = historyRide.map(r => r.date)
-	console.log(daysOff)
+	const daysOff = historyRide.map(r => ({
+		date: r.date,
+		where: r.where,
+	}))
 
 	const days = generateDaysForMonth(year, month)
 
@@ -79,7 +81,13 @@ function Calendary() {
 			<div ref={containerRef} className="flex items-center gap-6 w-full overflow-x-auto p-4 my-4 ">
 				{' '}
 				{days.map(d => {
-					const isEndDay = daysOff.includes(d.date)
+					const isEndDay =
+						daysOff.filter(day => day.date === d.date).length === 2 ||
+						daysOff.filter(day => day.date === d.date)[0]?.where === 'day-off'
+
+					const isOneChecked =
+						daysOff.filter(day => day.date === d.date).length === 1 &&
+						daysOff.filter(day => day.date === d.date)[0]?.where != 'day-off'
 
 					return (
 						<DateButton
@@ -88,6 +96,7 @@ function Calendary() {
 							active={active === d.date}
 							value={d.date}
 							isEnd={isEndDay}
+							isOneChecked={isOneChecked}
 							onClick={handleSetDate}
 							ref={el => (buttonRefs.current[d.date] = el)}>
 							<span>{daysName[d.dateDay]}</span>

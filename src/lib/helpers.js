@@ -13,3 +13,5 @@ export function generateDaysForMonth(year, month) {
 
 	return days
 }
+
+

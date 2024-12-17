@@ -22,6 +22,7 @@ export async function getHistoryRideByDate(date) {
 		.select('*')
 		.like('date', date)
 		.order('date', { ascending: true })
+		.order('where', { ascending: true })
 	if (error) throw new Error('Błąd pobierania danych')
 	return data
 }

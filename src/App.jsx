@@ -5,6 +5,7 @@ import History from './pages/History'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Information from './components/Information'
 import Stats from './pages/Stats'
+import Smile from './pages/Smile'
 
 const queryClient = new QueryClient()
 
@@ -17,6 +18,7 @@ function App() {
 						<Route index element={<HomePage />} />
 						<Route path="history" element={<History />} />
 						<Route path="stats" element={<Stats />} />
+						<Route path="smile" element={<Smile />} />
 						<Route path="/" element={<HomePage />}>
 							<Route path=":date" element={<Information />} />
 						</Route>

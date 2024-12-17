@@ -1,10 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getHistoryRideByDate } from '../lib/mutation'
-import useDateStore from '../store'
 
-export function useGetHistoryRideByDate() {
-	const historyYear = useDateStore(state => state.historyYear)
-	const historyMonth = useDateStore(state => state.historyMonth)
+export function useGetHistoryRideByDate(historyYear, historyMonth) {
 	const date = `${historyYear}-${(+historyMonth + 1).toString().padStart(2, '0')}%`
 
 	const {
