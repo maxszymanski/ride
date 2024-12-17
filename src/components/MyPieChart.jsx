@@ -1,14 +1,5 @@
-import { PieChart, Pie, Cell, Tooltip } from 'recharts'
+import { PieChart, Pie, Cell } from 'recharts'
 
-// const data = [
-// 	{ name: 'Z Maksiem', value: 6 },
-// 	{ name: 'Busem', value: 7 },
-// 	{ name: 'Pociągiem', value: 3 },
-// 	{ name: 'Zmienna 4', value: 10 },
-// 	{ name: 'Zmienna 5', value: 5 },
-// ]
-
-// Kolory dla poszczególnych fragmentów wykresu
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
 function MyPieChart({ data }) {
@@ -20,8 +11,6 @@ function MyPieChart({ data }) {
 					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 				))}
 			</Pie>
-			{/* Tooltip */}
-			{/* <Tooltip /> */}
 		</PieChart>
 	)
 }

@@ -7,27 +7,42 @@ export default defineConfig({
 		react(),
 		VitePWA({
 			registerType: 'autoUpdate',
-			injectRegister: 'auto',
-			workbox: {
-				globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+			devOptions: {
+				enabled: true,
 			},
 			manifest: {
-				name: 'My Vite App',
-				short_name: 'ViteApp',
-				description: 'A Vite PWA App',
-				theme_color: '#ffffff',
+				id: 'https://agaride.netlify.app/',
+				lang: 'PL',
+				dir: 'ltr',
+				name: 'Ride',
+				short_name: 'Ride',
+				description: 'Moje podróże',
+				theme_color: '#f3f4f6',
+				background_color: '#f3f4f6',
 				icons: [
 					{
-						src: 'icon-192x192.png',
+						src: 'icons/car64.png',
+						sizes: '64x64',
+						type: 'image/png',
+					},
+					{
+						src: 'icons/car128.png',
+						sizes: '128x128',
+						type: 'image/png',
+					},
+					{
+						src: 'icons/car192.png',
 						sizes: '192x192',
 						type: 'image/png',
 					},
 					{
-						src: 'icon-512x512.png',
+						src: 'icons/car512.png',
 						sizes: '512x512',
 						type: 'image/png',
 					},
 				],
+				start_url: '/',
+				display: 'fullscreen',
 			},
 		}),
 	],
