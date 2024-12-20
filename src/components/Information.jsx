@@ -30,8 +30,10 @@ function Information() {
 	if (!dayEnd)
 		return (
 			<>
-				<Where rideHome={rideHome} rideWork={rideWork} />
-				{whereGo === 'day-off' ? <DayOff /> : <WithWho />}
+				<div className="lg:flex lg:justify-evenly lg:items-center ">
+					<Where rideHome={rideHome} rideWork={rideWork} />
+					{whereGo === 'day-off' ? <DayOff /> : <WithWho />}
+				</div>
 				<SaveButton chooseWhereGo={chooseWhereGo} />
 			</>
 		)

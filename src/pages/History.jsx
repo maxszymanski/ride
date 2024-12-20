@@ -16,7 +16,7 @@ function History() {
 	if (isHistoryLoading) return <Loading />
 
 	return (
-		<main>
+		<>
 			<HistoryDates />
 			{historyRide.length > 0 && !isHistoryLoading ? (
 				<>
@@ -74,7 +74,7 @@ function History() {
 			) : (
 				<NoData />
 			)}
-		</main>
+		</>
 	)
 }
 

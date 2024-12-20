@@ -75,7 +75,7 @@ function Stats() {
 			: 'Do Zielonek'
 
 	return (
-		<main>
+		<>
 			<HistoryDates />
 			{isHistoryLoading && <Loading />}
 			{historyRide.length > 0 && !isHistoryLoading ? (
@@ -133,7 +133,7 @@ function Stats() {
 			) : (
 				<NoData />
 			)}
-		</main>
+		</>
 	)
 }
 

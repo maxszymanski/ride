@@ -1,10 +1,10 @@
 function DayEnd({ ride }) {
 	return (
-		<div className=" px-6 my-6">
+		<div className=" px-6 my-6 flex-1 flex flex-col items-center justify-center">
 			<p className="text-center my-6 text-2xl">
 				<span className="font-bold">{ride[0]?.date.split('-').reverse().join('-')}</span>
 			</p>
-			<div className="flex justify-between mt-12">
+			<div className="flex justify-between mt-12 w-full">
 				{ride.map(r => {
 					const { where, who, price, id } = r
 
