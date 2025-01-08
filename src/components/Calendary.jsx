@@ -66,7 +66,7 @@ function Calendary() {
 	}, [active])
 
 	return (
-		<div>
+		<>
 			<div className="relative py-2 px-4 flex items-center justify-between lg:py-6 lg:justify-evenly">
 				<SecondButton onClick={handleOpenMonthsModal} variant="min-w-48">
 					{allMonths[month]}
@@ -78,7 +78,9 @@ function Calendary() {
 				{isYearsModalOpen && <YearsModal />}
 			</div>
 
-			<div ref={containerRef} className="flex items-center gap-6 w-full overflow-x-auto py-8 lg:mb-12 mt-4 ">
+			<div
+				ref={containerRef}
+				className="flex items-center gap-6 w-full overflow-x-auto py-8 lg:mb-12 mt-4 scrollbar-thin">
 				{' '}
 				{days.map(d => {
 					const isEndDay =
@@ -105,7 +107,7 @@ function Calendary() {
 					)
 				})}
 			</div>
-		</div>
+		</>
 	)
 }
 
