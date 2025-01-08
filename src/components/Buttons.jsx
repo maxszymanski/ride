@@ -6,8 +6,10 @@ export function Button({ disabled, active, variant, children, ...props }) {
 	return (
 		<button
 			disabled={disabled}
-			className={`flex flex-col items-center justify-center   p-2 w-24 h-24 text-xl flex-shrink-0  border-2  border-second rounded-3xl disabled:cursor-not-allowed disabled:text-second/30 disabled:border-second/30 ${
-				active ? 'bg-second text-first border-solid' : 'bg-first text-second border-dotted'
+			className={`flex flex-col items-center justify-center   p-2 w-24 h-24 text-xl flex-shrink-0  border-2  border-second rounded-3xl disabled:cursor-not-allowed disabled:text-second/30 disabled:border-second/30 xl:hover:bg-third duration-300 transition-colors disabled:xl:hover:bg-transparent ${
+				active
+					? 'bg-second text-first border-solid xl:hover:bg-second/90'
+					: 'bg-first text-second border-dotted xl:hover:bg-third'
 			} ${variant || ''}`}
 			{...props}>
 			{children}
@@ -17,7 +19,7 @@ export function Button({ disabled, active, variant, children, ...props }) {
 export function SecondButton({ variant, children, ...props }) {
 	return (
 		<button
-			className={`bg-second py-2 px-8 text-xl text-first rounded-full disabled:bg-second/20 disabled:cursor-default ${
+			className={`bg-second py-2 px-8 text-xl text-first rounded-full disabled:bg-second/20 disabled:cursor-default xl:hover:bg-second/70 duration-300 transition-colors disabled:hover:bg-second/20 ${
 				variant || ''
 			}`}
 			{...props}>
@@ -32,8 +34,10 @@ export const DateButton = forwardRef(function DateButton(props, ref) {
 	return (
 		<button
 			ref={ref}
-			className={`flex flex-col items-center justify-center   p-2 text-2xl flex-shrink-0  border-2   rounded-3xl relative z-0 ${
-				active ? 'bg-second text-first  border-solid border-second' : 'bg-first  border-dotted'
+			className={`flex flex-col items-center justify-center   p-2 text-2xl flex-shrink-0  border-2 duration-300 transition-colors  rounded-3xl relative z-0 ${
+				active
+					? 'bg-second text-first  border-solid border-second xl:hover:bg-second/90 '
+					: 'bg-first  border-dotted xl:hover:bg-third '
 			} ${isEnd ? 'text-green-500 border-green-500' : ' border-second'} `}
 			{...otherProps}>
 			{children}

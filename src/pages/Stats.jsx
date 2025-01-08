@@ -80,9 +80,9 @@ function Stats() {
 			{isHistoryLoading && <Loading />}
 			{historyRide.length > 0 && !isHistoryLoading ? (
 				<>
-					<div className="pt-7 px-4">
-						<h2 className="text-center text-2xl">Podsumowanie</h2>
-						<ul className="text-base flex flex-col gap-2.5 mt-4">
+					<div className="pt-7 px-4 xl:px-24">
+						<h2 className="text-center text-2xl xl:py-12 xl:text-4xl">Podsumowanie</h2>
+						<ul className="text-base flex flex-col gap-2.5 mt-4 ">
 							<li className="mt-2">
 								W miesiącu <span className="font-bold">{allMonths[historyMonth]}</span>{' '}
 							</li>
@@ -104,24 +104,26 @@ function Stats() {
 							</li>
 						</ul>
 					</div>
-					<div>
-						<h3 className="text-center pt-8 pb-4 text-xl">
+					<div className="xl:px-24 xl:my-12">
+						<h3 className="text-center pt-8 pb-4 text-xl xl:mb-12 xl:text-left xl:text-2xl">
 							Koszty przejazdu za <span className="font-bold">{daysLength}</span> dni
 						</h3>
-						<div className="flex items-center  gap-5 justify-between px-4  w-full ">
+						<div className="flex items-center  gap-5 justify-between px-4  w-full xl:justify-evenly">
 							<MyPieChart data={data} />
-							<div className="text-lg flex flex-col gap-3 min-w-max">
+							<div className="text-lg flex flex-col gap-3 min-w-max xl:text-xl">
 								<p className="text-[#0088FE]">Maksiu: {`${withMaxCoast}zł`}</p>
 								<p className="text-[#00C49F]">Pociąg: {`${withTrainCoast}zł`}</p>
 								<p className="text-[#FFBB28]">Bus: {`${withBusCoast}zł`}</p>
 							</div>
 						</div>
 					</div>
-					<div>
-						<h3 className="text-center pt-8 pb-4 text-xl">Ilosć przejazdów</h3>
-						<div className="flex items-center  gap-5 justify-between px-4  w-full ">
+					<div className="xl:px-24 xl:mb-12">
+						<h3 className="text-center pt-8 pb-4 text-xl xl:mb-12 xl:text-left xl:text-2xl">
+							Ilosć przejazdów
+						</h3>
+						<div className="flex items-center  gap-5 justify-between px-4  w-full xl:justify-evenly">
 							<MyPieChart data={dataWithWhoRide} />
-							<div className="text-lg flex flex-col gap-3 min-w-max">
+							<div className="text-lg flex flex-col gap-3 min-w-max xl:text-xl">
 								<p className="text-[#0088FE]">Maksiu: {withMax?.length}</p>
 								<p className="text-[#00C49F]">Pociąg: {withTrain?.length}</p>
 								<p className="text-[#FFBB28]">Bus: {withBus?.length}</p>

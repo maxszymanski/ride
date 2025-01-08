@@ -20,19 +20,19 @@ function History() {
 			<HistoryDates />
 			{historyRide.length > 0 && !isHistoryLoading ? (
 				<>
-					<div className="flex justify-between px-12 py-8">
+					<div className="flex justify-between px-12 py-8 xl:justify-center xl:gap-20 xl:py-16">
 						<div className="text-center">
-							<p className="mb-3">Dni pracujące</p>
-							<p className="font-bold text-xl">{workRide}</p>
+							<p className="mb-3 xl:text-lg">Dni pracujące</p>
+							<p className="font-bold text-xl xl:text-2xl">{workRide}</p>
 						</div>
 
 						<div className="text-center">
-							<p className="mb-3">Dni wolne</p>
-							<p className="font-bold text-xl">{daysOff}</p>
+							<p className="mb-3 xl:text-lg">Dni wolne</p>
+							<p className="font-bold text-xl xl:text-2xl">{daysOff}</p>
 						</div>
 					</div>
 
-					<ul className="flex flex-col   divide-third divide-y-2 w-full  border-t-2 border-third">
+					<ul className="flex flex-col   divide-third divide-y-2 w-full  border-t-2 border-third xl:rounded-xl overflow-hidden">
 						{historyRide.map(ride => {
 							const { id, date, who, where } = ride
 							const whereGo =

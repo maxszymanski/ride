@@ -24,7 +24,7 @@ function HistoryDates() {
 	}
 
 	return (
-		<div className="relative py-2 px-4 flex items-center justify-between">
+		<div className="relative py-2 px-4 flex items-center justify-between xl:justify-evenly">
 			<SecondButton onClick={handleOpenMonthsModal} variant="min-w-48">
 				{allMonths[historyMonth]}
 			</SecondButton>

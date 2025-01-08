@@ -80,7 +80,7 @@ function Calendary() {
 
 			<div
 				ref={containerRef}
-				className="flex items-center gap-6 w-full overflow-x-auto py-8 lg:mb-12 mt-4 scrollbar-thin">
+				className="flex items-center gap-6 w-full overflow-x-auto py-8 lg:mb-12 mt-4 scrollbar-thin scrollbar-thumb-third scrollbar-track-first">
 				{' '}
 				{days.map(d => {
 					const isEndDay =

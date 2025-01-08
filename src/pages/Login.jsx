@@ -59,7 +59,7 @@ function Login() {
 			<h2 className="text-6xl md:text-7xl text-center text-second/80 mb-16  xl:text-8xl ">Admin</h2>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="px-8 py-12 flex flex-col gap-5 border border-second/20 bg-third/80 backdrop-blur-sm rounded-2xl md:px-12  xl:gap-5 w-72">
+				className="px-8 py-12 flex flex-col gap-5 border border-second/20 bg-third/80 backdrop-blur-sm rounded-2xl md:px-12   max-w-72 xl:max-w-96 xl:gap-9">
 				<FormRow
 					error={errors?.email || null}
 					errorMessage={errors?.email?.message || null}

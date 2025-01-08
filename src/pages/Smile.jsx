@@ -17,8 +17,8 @@ function Smile() {
 
 	if (!isAuthenticated)
 		return (
-			<div className="flex-1 h-full flex items-center justify-center text-center px-12 flex-col gap-8 text-xl">
-				<p className=" leading-8">
+			<div className="flex-1 h-full flex items-center justify-center text-center px-12 flex-col gap-8 text-xl xl:mt-36 xl:text-2xl xl:gap-16 ">
+				<p className=" leading-8 xl:leading-10">
 					Ups! <br /> Ta sekcja jest dostępna tylko dla administratorów.
 				</p>
 				<NavLink

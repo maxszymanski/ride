@@ -3,6 +3,8 @@ import { useSetNewRide } from '../hooks/useSetNewRide'
 import { useUser } from '../hooks/useUser'
 import useDateStore from '../store'
 import { SecondButton } from './Buttons'
+import useClickOutside from '../hooks/useClickOutside'
+import { useRef } from 'react'
 
 function SaveModal() {
 	const activeData = useDateStore(state => state.active)
@@ -12,6 +14,8 @@ function SaveModal() {
 	const setIsSaveModalOpen = useDateStore(state => state.setIsSaveModalOpen)
 	const { addRide } = useSetNewRide()
 	const { isAuthenticated } = useUser()
+	const modalRef = useRef(null)
+	useClickOutside(modalRef, setIsSaveModalOpen)
 
 	const withWhoGo =
 		withWho === 'train'
@@ -47,10 +51,12 @@ function SaveModal() {
 		setIsSaveModalOpen()
 	}
 	return (
-		<div className="absolute w-full h-full min-h-screen top-0 left-0 bg-second/70 flex items-center justify-center px-2 ">
-			<div className="border border-third shadow-md shadow-third p-6 gap-6 flex flex-col bg-third rounded-xl overflow-hidden ">
+		<div className="absolute w-full h-full min-h-screen top-0 left-0 bg-second/70 flex items-center justify-center px-2">
+			<div
+				className="border border-third shadow-md shadow-third p-6 gap-6 flex flex-col bg-third rounded-xl overflow-hidden  max-w-[30rem]"
+				ref={modalRef}>
 				{!isAuthenticated && (
-					<p className="text-center text-sm bg-second/50 px-2 py-4 rounded-xl text-first">
+					<p className="text-center text-sm bg-second/50 px-2 py-4 rounded-xl text-first  xl:leading-6">
 						<strong>Uwaga!</strong> <br />
 						Obecnie jesteś w trybie podglądu.{' '}
 						<NavLink to="/login" className="text-green-400">
