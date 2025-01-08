@@ -16,7 +16,11 @@ export function Button({ disabled, active, variant, children, ...props }) {
 }
 export function SecondButton({ variant, children, ...props }) {
 	return (
-		<button className={`bg-second py-2 px-8 text-xl text-first rounded-full ${variant || ''}`} {...props}>
+		<button
+			className={`bg-second py-2 px-8 text-xl text-first rounded-full disabled:bg-second/20 disabled:cursor-not-allowed ${
+				variant || ''
+			}`}
+			{...props}>
 			{children}
 		</button>
 	)

@@ -1,4 +1,6 @@
+import { NavLink } from 'react-router'
 import { useSetNewRide } from '../hooks/useSetNewRide'
+import { useUser } from '../hooks/useUser'
 import useDateStore from '../store'
 import { SecondButton } from './Buttons'
 
@@ -9,6 +11,7 @@ function SaveModal() {
 	const price = useDateStore(state => state.price)
 	const setIsSaveModalOpen = useDateStore(state => state.setIsSaveModalOpen)
 	const { addRide } = useSetNewRide()
+	const { isAuthenticated, isLoading } = useUser()
 
 	const withWhoGo =
 		withWho === 'train'
@@ -44,8 +47,16 @@ function SaveModal() {
 		setIsSaveModalOpen()
 	}
 	return (
-		<div className="absolute w-full h-full min-h-screen top-0 left-0 bg-second/70 flex items-center justify-center px-2">
-			<div className="border border-third shadow-md shadow-third p-6 gap-6 flex flex-col bg-third rounded-xl overflow-hidden">
+		<div className="absolute w-full h-full min-h-screen top-0 left-0 bg-second/70 flex items-center justify-center px-2 ">
+			<div className="border border-third shadow-md shadow-third p-6 gap-6 flex flex-col bg-third rounded-xl overflow-hidden ">
+				<p className="text-center text-sm bg-second/50 px-2 py-4 rounded-xl text-first">
+					<strong>Uwaga!</strong> <br />
+					Obecnie jesteś w trybie podglądu.{' '}
+					<NavLink to="/login" className="text-green-400">
+						Zaloguj się{' '}
+					</NavLink>{' '}
+					jako administrator, aby móc edytować i zapisywać dane.
+				</p>
 				<p className="text-center font-semibold text-2xl">{`${
 					whereGo === 'day-off' ? 'Potwierdź dzień wolny' : 'Potwierdź podróż'
 				}`}</p>
@@ -73,7 +84,10 @@ function SaveModal() {
 				</div>
 
 				<div className="flex items-center justify-between gap-5">
-					<SecondButton variant="text-lg" onClick={whereGo === 'day-off' ? handleSaveDayOff : handleSaveRide}>
+					<SecondButton
+						variant="text-lg"
+						disabled={!isAuthenticated}
+						onClick={whereGo === 'day-off' ? handleSaveDayOff : handleSaveRide}>
 						Potwierdź
 					</SecondButton>
 					<SecondButton variant="bg-red-600 text-lg" onClick={() => setIsSaveModalOpen()}>

@@ -14,6 +14,7 @@ const useDateStore = create(set => ({
 	whereGo: 'work',
 	withWho: 'max',
 	price: 9,
+	isLoginError: false,
 
 	setNewYear: newYear => set(() => ({ year: newYear })),
 	setNewMonth: newMonth => set(() => ({ month: newMonth })),
@@ -27,6 +28,7 @@ const useDateStore = create(set => ({
 	setIsSaveModalOpen: () => set(state => ({ isSaveModalOpen: !state.isSaveModalOpen })),
 	setWhereGo: goTo => set({ whereGo: goTo }),
 	setWithWho: goWith => set({ withWho: goWith }),
+	setIsLoginError: () => set({ isLoginError: true }),
 }))
 
 export default useDateStore

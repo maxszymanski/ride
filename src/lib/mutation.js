@@ -34,6 +34,7 @@ export async function login({ email, password }) {
 	})
 	if (error) {
 		console.error('Logowanie nieudane:', error.message)
+		throw new Error('Logowanie nieudane')
 	}
 	return data
 }
